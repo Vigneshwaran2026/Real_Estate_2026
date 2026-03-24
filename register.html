@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Stackly | Register - Smart Real Estate</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a1f1e 0%, #0c2a28 50%, #0b2623 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* animated background particles */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-shapes span {
+            position: absolute;
+            display: block;
+            background: rgba(228, 179, 99, 0.08);
+            border-radius: 50%;
+            animation: floatShape 20s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-80px) rotate(180deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* main card container */
+        .register-container {
+            width: 100%;
+            max-width: 1300px;
+            background: rgba(18, 30, 29, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(228, 179, 99, 0.25);
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            z-index: 10;
+            animation: fadeSlideUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* left branding side - FIXED SPACING */
+        .brand-side {
+            flex: 1.2;
+            background: linear-gradient(125deg, #0f2c28 0%, #0a221f 100%);
+            padding: 2.8rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            min-height: 100%;
+        }
+
+        .brand-side::after {
+            content: "🏘️";
+            font-size: 18rem;
+            opacity: 0.04;
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            pointer-events: none;
+        }
+
+        .brand-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .tagline {
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .tagline h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #F5E7C8, #D9B48B);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .tagline p {
+            color: #bcd0cc;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 95%;
+        }
+
+        .feature-list {
+            margin: 1.8rem 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+            color: #e2d9c8;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .feature-list li i {
+            color: #7065F0;
+            font-size: 1.1rem;
+            width: 28px;
+        }
+
+        .testimonial {
+            background: rgba(228, 179, 99, 0.08);
+            padding: 1.2rem 1.3rem;
+            border-radius: 1.5rem;
+            backdrop-filter: blur(4px);
+            border-left: 3px solid #7065F0;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #dfd3b0;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .testimonial span {
+            display: block;
+            margin-top: 0.6rem;
+            font-weight: 600;
+            color: #F5E7C8;
+            font-size: 0.8rem;
+        }
+
+        /* right form side */
+        .form-side {
+            flex: 1;
+            padding: 2.2rem 2.5rem;
+            background: rgba(15, 28, 26, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Back to Home Button */
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(228, 179, 99, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(228, 179, 99, 0.5);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            color: #7065F0;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .back-home-btn:hover {
+            background: rgba(228, 179, 99, 0.35);
+            transform: translateY(-2px);
+            border-color: #7065F0;
+            color: #f5e7c8;
+            box-shadow: 0 4px 12px rgba(228, 179, 99, 0.2);
+        }
+
+        .back-home-btn i {
+            font-size: 1rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-header h2 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #F5E7C8;
+        }
+
+        .form-header p {
+            color: #9eb3ae;
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        /* Role Selector - Admin & Customer */
+        .role-selector {
+            background: #1E3A36;
+            border-radius: 100px;
+            display: flex;
+            padding: 5px;
+            margin: 1rem 0 1.5rem;
+            gap: 8px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .role-option {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #cbd8d3;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .role-option i {
+            font-size: 1.1rem;
+        }
+
+        .role-option.active {
+            background: #7065F0;
+            color: #0e2a26;
+            box-shadow: 0 6px 14px rgba(228, 179, 99, 0.3);
+            transform: scale(1.02);
+        }
+
+        /* input group modern */
+        .input-group {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 13px 18px 13px 48px;
+            background: #1C302E;
+            border: 1.5px solid #2F4A46;
+            border-radius: 1.8rem;
+            font-size: 0.9rem;
+            color: #F5F0E0;
+            transition: all 0.2s;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-group input:focus {
+            border-color: #7065F0;
+            box-shadow: 0 0 0 3px rgba(228, 179, 99, 0.2);
+            background: #1f3b38;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7065F0;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .name-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .name-row .input-group {
+            flex: 1;
+        }
+
+        /* error message styling */
+        .error-msg {
+            font-size: 0.7rem;
+            color: #ffaa77;
+            margin-top: 0.3rem;
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .error-msg i {
+            font-size: 0.65rem;
+            color: #ffaa77;
+            position: static;
+            transform: none;
+        }
+
+        .input-group.error input {
+            border-color: #ff8866;
+            background: #2a2a2a;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 1.2rem 0 1.2rem;
+            color: #b2c7c1;
+            font-size: 0.8rem;
+        }
+
+        .terms input {
+            width: 18px;
+            height: 18px;
+            accent-color: #7065F0;
+            cursor: pointer;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(95deg, #7065F0, #d6a24a);
+            border: none;
+            border-radius: 3rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0d2925;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(95deg, #f0c27b, #7065F0);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(228, 179, 99, 0.4);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-redirect {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #98ada7;
+        }
+
+        .login-redirect a {
+            color: #7065F0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .login-redirect a:hover {
+            text-decoration: underline;
+        }
+
+        /* animated toast message */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #1f2f2c;
+            backdrop-filter: blur(12px);
+            color: #f5e7c8;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-left: 5px solid #7065F0;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 200;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .toast-msg.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        @media (max-width: 850px) {
+            .register-container {
+                flex-direction: column;
+                max-width: 550px;
+            }
+            .brand-side {
+                padding: 1.8rem;
+            }
+            .form-side {
+                padding: 1.8rem;
+            }
+            .name-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            .back-home-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            .toast-msg {
+                white-space: nowrap;
+                font-size: 0.8rem;
+                padding: 10px 20px;
+            }
+            .role-option {
+                padding: 10px 0;
+                font-size: 0.9rem;
+            }
+            .tagline h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .password-strength {
+            font-size: 0.7rem;
+            margin-top: 5px;
+            margin-left: 48px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .strength-text {
+            color: #b2c7c1;
+        }
+
+        .strength-bar {
+            display: flex;
+            gap: 4px;
+        }
+
+        .strength-bar span {
+            width: 30px;
+            height: 3px;
+            background: #2F4A46;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        ::placeholder {
+            color: #8aa6a0;
+            font-weight: 400;
+        }
+
+        /* Hide any default header */
+        header, .main-header, nav:not(.role-selector) {
+            display: none;
+        }
+
+        .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 180px;
+    height: 52px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="bg-shapes" id="bgShapes"></div>
+
+    <div class="register-container">
+        <!-- Left side - branding with proper spacing -->
+        <div class="brand-side">
+          <div class="logo">
+    <img src="assets/img/logo.webp" alt="STACKLY Logo" class="logo-img">
+</div>
+            <div class="brand-content">
+                <div class="tagline">
+                    <h1>Smart Living<br>Starts Here</h1>
+                    <p>Explore premium apartments, villas, and smart homes crafted for comfort, elegance, and modern living. Find the perfect property that matches your lifestyle and future goals.</p>
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Premium Real Estate Listings</li>
+                    <li><i class="fas fa-user-tie"></i> Admin & Customer Management</li>
+                    <li><i class="fas fa-hand-holding-usd"></i> Best Property Deals</li>
+                </ul>
+                <div class="testimonial">
+                    <p>"Stackly helped me find my dream home within weeks — seamless experience and trusted support!"</p>
+                    <span>— Michael Chen, Homeowner</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side - registration form with role selection -->
+        <div class="form-side">
+            <!-- Back to Home Button -->
+            <a href="#" class="back-home-btn" id="backHomeBtn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+
+            <div class="form-header">
+                <h2>Create Account</h2>
+                <p>Join Stackly Real Estate Platform</p>
+            </div>
+
+            <!-- Role Selector: Admin and Customer -->
+            <div class="role-selector" id="roleSelector">
+                <div class="role-option active" data-role="customer">
+                    <i class="fas fa-user"></i> <span>Customer</span>
+                </div>
+                <div class="role-option" data-role="admin">
+                    <i class="fas fa-user-shield"></i> <span>Admin</span>
+                </div>
+            </div>
+
+            <form id="registerForm">
+                <div class="name-row">
+                    <div class="input-group" id="firstNameGroup">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="firstName" placeholder="First Name" autocomplete="off">
+                    </div>
+                    <div class="input-group" id="lastNameGroup">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="lastName" placeholder="Last Name" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="input-group" id="emailGroup">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email Address" autocomplete="off">
+                </div>
+
+                <div class="input-group" id="phoneGroup">
+                    <i class="fas fa-phone-alt"></i>
+                    <input type="tel" id="phone" placeholder="Phone Number (e.g., +1 234 567 8900)" autocomplete="off">
+                </div>
+
+                <div class="input-group" id="passwordGroup">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password (min. 8 chars)">
+                </div>
+                <div class="password-strength" id="passwordStrength">
+                    <div class="strength-bar" id="strengthBar">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <span class="strength-text" id="strengthText">Weak</span>
+                </div>
+
+                <div class="input-group" id="confirmPasswordGroup">
+                    <i class="fas fa-check-circle"></i>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password">
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="termsCheckbox">
+                    <label for="termsCheckbox">I agree to the <a href="#" style="color:#7065F0;">Terms of Service</a> & Privacy Policy</label>
+                </div>
+
+                <button type="submit" class="register-btn" id="registerBtn">
+                    <i class="fas fa-arrow-right-to-bracket"></i> Register & Continue
+                </button>
+            </form>
+            <div class="login-redirect">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastMsg" class="toast-msg">✨ Registration successful!</div>
+
+    <script>
+        // create animated floating shapes
+        function createShapes() {
+            const container = document.getElementById('bgShapes');
+            for (let i = 0; i < 20; i++) {
+                const span = document.createElement('span');
+                const size = Math.floor(Math.random() * 120) + 30;
+                span.style.width = size + 'px';
+                span.style.height = size + 'px';
+                span.style.left = Math.random() * 100 + '%';
+                span.style.top = Math.random() * 100 + '%';
+                const duration = 15 + Math.random() * 25;
+                span.style.animation = `floatShape ${duration}s infinite ease-in-out`;
+                span.style.animationDelay = Math.random() * 15 + 's';
+                container.appendChild(span);
+            }
+        }
+        createShapes();
+
+        // DOM elements
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const phone = document.getElementById('phone');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const registerBtn = document.getElementById('registerBtn');
+        const form = document.getElementById('registerForm');
+        const toast = document.getElementById('toastMsg');
+        
+        // Role selection elements
+        const roleOptions = document.querySelectorAll('.role-option');
+        let selectedRole = 'customer';
+
+        // Role selection handler
+        function updateRoleUI(role) {
+            roleOptions.forEach(opt => {
+                const roleVal = opt.getAttribute('data-role');
+                if (roleVal === role) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
+            selectedRole = role;
+        }
+
+        roleOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                const role = opt.getAttribute('data-role');
+                updateRoleUI(role);
+            });
+        });
+
+        // Helper: show toast message
+        function showMessage(text, isError = false) {
+            toast.textContent = text;
+            toast.style.borderLeftColor = isError ? '#ff8866' : '#7065F0';
+            toast.style.backgroundColor = isError ? '#2e2420' : '#1f2f2c';
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Email validation
+        function isValidEmail(emailStr) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(emailStr);
+        }
+
+        // Phone validation
+        function isValidPhone(phoneStr) {
+            const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{3,4}[-\s\.]?[0-9]{3,6}$/im;
+            return phoneRegex.test(phoneStr) && phoneStr.replace(/[\s\-\(\)\+]/g, '').length >= 8;
+        }
+
+        // Password strength checker
+        function checkPasswordStrength(pwd) {
+            let strength = 0;
+            if (pwd.length >= 8) strength++;
+            if (pwd.match(/[a-z]/) && pwd.match(/[A-Z]/)) strength++;
+            if (pwd.match(/[0-9]/)) strength++;
+            if (pwd.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            const strengthBarSpans = document.querySelectorAll('#strengthBar span');
+            const strengthText = document.getElementById('strengthText');
+            
+            strengthBarSpans.forEach(span => {
+                span.style.background = '#2F4A46';
+            });
+            
+            if (pwd.length === 0) {
+                strengthText.innerText = '';
+                strengthText.style.color = '#b2c7c1';
+                return 0;
+            }
+            
+            let level = 0;
+            if (strength === 1) level = 1;
+            else if (strength === 2) level = 2;
+            else if (strength === 3) level = 3;
+            else if (strength >= 4) level = 4;
+            
+            for (let i = 0; i < level; i++) {
+                if (i === 0) strengthBarSpans[i].style.background = '#ff8866';
+                else if (i === 1) strengthBarSpans[i].style.background = '#ffaa66';
+                else if (i === 2) strengthBarSpans[i].style.background = '#7065F0';
+                else if (i === 3) strengthBarSpans[i].style.background = '#6fcf97';
+            }
+            
+            if (level === 1) strengthText.innerText = 'Weak';
+            else if (level === 2) strengthText.innerText = 'Fair';
+            else if (level === 3) strengthText.innerText = 'Good';
+            else if (level === 4) strengthText.innerText = 'Strong';
+            else strengthText.innerText = '';
+            
+            strengthText.style.color = '#7065F0';
+            return strength;
+        }
+
+        password.addEventListener('input', () => {
+            checkPasswordStrength(password.value);
+        });
+
+        // Remove error styling helper
+        function removeError(groupId) {
+            const group = document.getElementById(groupId);
+            if (group) group.classList.remove('error');
+            const existingErr = group?.querySelector('.error-msg');
+            if (existingErr) existingErr.remove();
+        }
+
+        function showError(groupId, message) {
+            const group = document.getElementById(groupId);
+            if (!group) return;
+            group.classList.add('error');
+            let errMsg = group.querySelector('.error-msg');
+            if (!errMsg) {
+                errMsg = document.createElement('div');
+                errMsg.className = 'error-msg';
+                group.appendChild(errMsg);
+            }
+            errMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        }
+
+        // Main validation
+        function validateForm() {
+            let isValid = true;
+            
+            const groups = ['firstNameGroup', 'lastNameGroup', 'emailGroup', 'phoneGroup', 'passwordGroup', 'confirmPasswordGroup'];
+            groups.forEach(g => removeError(g));
+            
+            if (!firstName.value.trim()) {
+                showError('firstNameGroup', 'First name is required');
+                isValid = false;
+            } else if (firstName.value.trim().length < 2) {
+                showError('firstNameGroup', 'First name must be at least 2 characters');
+                isValid = false;
+            }
+            
+            if (!lastName.value.trim()) {
+                showError('lastNameGroup', 'Last name is required');
+                isValid = false;
+            } else if (lastName.value.trim().length < 2) {
+                showError('lastNameGroup', 'Last name must be at least 2 characters');
+                isValid = false;
+            }
+            
+            if (!email.value.trim()) {
+                showError('emailGroup', 'Email address is required');
+                isValid = false;
+            } else if (!isValidEmail(email.value.trim())) {
+                showError('emailGroup', 'Enter a valid email (e.g., name@domain.com)');
+                isValid = false;
+            }
+            
+            if (!phone.value.trim()) {
+                showError('phoneGroup', 'Phone number is required');
+                isValid = false;
+            } else if (!isValidPhone(phone.value.trim())) {
+                showError('phoneGroup', 'Enter a valid phone number (min 8 digits)');
+                isValid = false;
+            }
+            
+            const pwd = password.value;
+            if (!pwd) {
+                showError('passwordGroup', 'Password is required');
+                isValid = false;
+            } else if (pwd.length < 8) {
+                showError('passwordGroup', 'Password must be at least 8 characters');
+                isValid = false;
+            } else {
+                const strength = checkPasswordStrength(pwd);
+                if (strength < 2) {
+                    showError('passwordGroup', 'Password too weak. Use uppercase, lowercase, numbers or symbols');
+                    isValid = false;
+                }
+            }
+            
+            if (!confirmPassword.value) {
+                showError('confirmPasswordGroup', 'Please confirm your password');
+                isValid = false;
+            } else if (confirmPassword.value !== pwd) {
+                showError('confirmPasswordGroup', 'Passwords do not match');
+                isValid = false;
+            }
+            
+            if (!termsCheckbox.checked) {
+                showMessage('Please accept the Terms & Conditions to continue', true);
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        // Form submission - redirect to login.html
+      form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+        showMessage('Please Fill All Fields', true);
+        return;
+    }
+
+    const btn = registerBtn;
+    btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Processing...';
+    btn.disabled = true;
+
+    // Demo only (no storage, no email)
+    showMessage('✅ Demo submitted successfully! Redirecting...');
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1200);
+});
+ 
+        // Back to Home button
+        const backHomeBtn = document.getElementById('backHomeBtn');
+        backHomeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+        
+        // Live validation blur events
+        firstName.addEventListener('blur', () => validateForm());
+        lastName.addEventListener('blur', () => validateForm());
+        email.addEventListener('blur', () => validateForm());
+        phone.addEventListener('blur', () => validateForm());
+        password.addEventListener('blur', () => validateForm());
+        confirmPassword.addEventListener('blur', () => validateForm());
+        
+        // Initialize
+        checkPasswordStrength('');
+        updateRoleUI('customer');
+    </script>
+</body>
+</html>
