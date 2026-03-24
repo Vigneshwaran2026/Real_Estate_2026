@@ -1855,6 +1855,37 @@ html, body {
     margin-bottom: 12px;
     font-size: 14px;
 }
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .nav-menu {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .sidebar-footer {
+        display: block;
+        margin-top: auto; /* 🔥 push to bottom */
+        padding-bottom: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .logout-btn {
+        width: 100%;
+        font-size: 14px;
+        padding: 14px;
+    }
+
+}
   </style>
 </head>
 <body>
