@@ -2225,9 +2225,15 @@ html, body {
 }
 
 .sidebar-footer {
-    position: sticky;
-    bottom: 0;
+    position: relative;   /* 🔥 change */
+    margin-top: auto;     /* 🔥 push to bottom */
     background: var(--ul-secondary);
+}
+
+
+.sidebar {
+    overflow-y: auto;
+    height: 100vh;
 }
 
 @media (max-width: 768px) {
@@ -2241,12 +2247,15 @@ html, body {
     .sidebar {
     display: flex;
     flex-direction: column;
-    height: 100vh;
     overflow-y: auto;   /* 🔥 IMPORTANT */
     }
 
+}
 
-
+@media (max-width: 768px) {
+    .sidebar-footer {
+        padding-bottom: 20px;
+    }
 }
 
   </style>
