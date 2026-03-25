@@ -1856,26 +1856,52 @@ html, body {
     font-size: 14px;
 }
 
-/* Hide mobile logout in desktop */
-.mobile-logout {
-    display: none;
+@media (max-width: 768px) {
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .nav-menu {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .sidebar-footer {
+        display: block;
+        padding-bottom: 30px;
+    }
+
 }
 
-/* Hide desktop logout in mobile */
-.desktop-logout {
-    display: block;
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--ul-secondary);
 }
 
 @media (max-width: 768px) {
 
-    .mobile-logout {
-        display: block;   /* show after settings */
-    }
-
     .logout-btn {
-        display: none;    /* hide bottom logout */
+        width: 100%;
+        font-size: 14px;
+        padding: 14px;
     }
 
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;   /* 🔥 IMPORTANT */
+}
+
+.nav-menu {
+    flex: unset;        /* remove flex push */
+    overflow: visible;
 }
   </style>
 </head>
