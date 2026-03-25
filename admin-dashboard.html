@@ -1856,33 +1856,24 @@ html, body {
     font-size: 14px;
 }
 
-@media (max-width: 768px) {
+/* Hide mobile logout in desktop */
+.mobile-logout {
+    display: none;
+}
 
-    .sidebar {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    .nav-menu {
-        flex: 1;
-        overflow-y: auto;
-    }
-
-    .sidebar-footer {
-        display: block;
-        margin-top: auto; /* 🔥 push to bottom */
-        padding-bottom: 20px;
-    }
-
+/* Hide desktop logout in mobile */
+.desktop-logout {
+    display: block;
 }
 
 @media (max-width: 768px) {
 
+    .mobile-logout {
+        display: block;   /* show after settings */
+    }
+
     .logout-btn {
-        width: 100%;
-        font-size: 14px;
-        padding: 14px;
+        display: none;    /* hide bottom logout */
     }
 
 }
@@ -1964,6 +1955,13 @@ html, body {
     <a href="javascript:void(0)" class="nav-link" onclick="showSection(event, 'settingsSection', this)">
         <i class="fas fa-cog"></i>
         <span class="nav-text">Settings</span>
+    </a>
+</li>
+
+<li class="nav-item mobile-logout">
+    <a href="javascript:void(0)" class="nav-link" onclick="logoutUser()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="nav-text">Logout</span>
     </a>
 </li>
 
