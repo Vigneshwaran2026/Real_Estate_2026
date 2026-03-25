@@ -2204,27 +2204,49 @@ html, body {
 }
 
 
-/* Hide mobile logout in desktop */
-.mobile-logout {
-    display: none;
-}
+@media (max-width: 768px) {
 
-/* Hide desktop logout in mobile */
-.desktop-logout {
-    display: block;
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .nav-menu {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .sidebar-footer {
+        display: block;
+        margin-top: auto; /* 🔥 push to bottom */
+        padding-bottom: 20px;
+    }
+
 }
 
 @media (max-width: 768px) {
 
-    .mobile-logout {
-        display: block;   /* show after settings */
-    }
-
     .logout-btn {
-        display: none;    /* hide bottom logout */
+        width: 100%;
+        font-size: 14px;
+        padding: 14px;
     }
 
 }
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;   /* 🔥 IMPORTANT */
+}
+
+.nav-menu {
+    flex: unset;        /* remove flex push */
+    overflow: visible;
+}
+
   </style>
 </head>
 <body>
@@ -2308,13 +2330,6 @@ html, body {
        onclick="showSection(event, 'settingsSection', this)">
         <i class="fas fa-cog"></i>
         <span class="nav-text">Settings</span>
-    </a>
-</li>
-
-<li class="nav-item mobile-logout">
-    <a href="javascript:void(0)" class="nav-link" onclick="logoutUser()">
-        <i class="fas fa-sign-out-alt"></i>
-        <span class="nav-text">Logout</span>
     </a>
 </li>
 
