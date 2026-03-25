@@ -2219,10 +2219,15 @@ html, body {
 
     .sidebar-footer {
         display: block;
-        margin-top: auto; /* 🔥 push to bottom */
-        padding-bottom: 20px;
+        padding-bottom: 30px;
     }
 
+}
+
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    background: var(--ul-secondary);
 }
 
 @media (max-width: 768px) {
@@ -2238,15 +2243,11 @@ html, body {
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;   /* 🔥 IMPORTANT */
-}
+    }
 
-.nav-menu {
-    flex: unset;        /* remove flex push */
-    overflow: visible;
-}
+
 
 }
-
 
   </style>
 </head>
