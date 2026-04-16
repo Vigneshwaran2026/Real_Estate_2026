@@ -2012,5 +2012,18 @@ document.querySelectorAll('.ul-project-add-to-favorites-btn').forEach(button => 
     });
 });
 </script>
+
+<script>
+       // PRELOADER FIX
+window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+
+    setTimeout(() => {
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
+    }, 1800); // you can change timing
+});
+
+</script>
 </body>
 </html>
