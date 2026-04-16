@@ -1,15 +1,4 @@
     document.addEventListener("DOMContentLoaded", (event) => {
-        // preloader
-       // PRELOADER FIX
-window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-
-    setTimeout(() => {
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-    }, 1800); // you can change timing
-});
-
     // HEADER NAV IN MOBILE
     if (document.querySelector(".ul-header-nav")) {
         const ulSidebar = document.querySelector(".ul-sidebar");
@@ -482,38 +471,5 @@ window.addEventListener("load", function () {
     });
 
     // testimonial slider
-    new Splide('#ul-2-testimonial-slider', {
-        type: 'loop',
-        perPage: 3,
-        arrows: false,
-        pagination: false,
-        gap: 'clamp(16px,1.26vw,24px)',
-        breakpoints: {
-            768: {
-                perPage: 2,
-            },
-            480: {
-                perPage: 1,
-            }
-        }
-    }).mount(window.splide.Extensions);
-
-    // testimonial slider right to left
-    new Splide('#ul-2-testimonial-slider-2', {
-        type: 'loop',
-        perPage: 3,
-        arrows: false,
-        pagination: false,
-        gap: 'clamp(16px,1.26vw,24px)',
-        direction: 'rtl',
-        breakpoints: {
-            768: {
-                perPage: 2,
-            },
-            480: {
-                perPage: 1,
-            }
-        }
-    }).mount(window.splide.Extensions);
-});
+    });
 
